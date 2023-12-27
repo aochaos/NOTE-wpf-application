@@ -1,0 +1,36 @@
+﻿<Window x:Class="kursach.Redactor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kursach"
+        mc:Ignorable="d"
+        Title="Redactor" Height="450" Width="500">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+    </Window.CommandBindings>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Reses.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel Background="Yellow">
+        <ToolBar DockPanel.Dock="Top" Background="Yellow">
+            <Button Command="ApplicationCommands.Save" Content="Save" Style="{StaticResource StyleForSave}" Margin="0"/>
+            <Separator />
+            <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold" Content="B" Style="{StaticResource But2}"/>
+            <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic" Content="I" Style="{StaticResource But2}"/>
+            <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline" Content="U" Style="{StaticResource But2}"/>
+            <Separator />
+            <ComboBox Name="cmbFontFamily" Width="100" SelectionChanged="cmbFontFamily_SelectionChanged" 
+                      Style="{StaticResource Cbox}"/>
+            <ComboBox Name="cmbFontSize" Width="50" IsEditable="True"
+                      TextBoxBase.TextChanged="cmbFontSize_TextChanged" Style="{StaticResource Cbox}"/>
+            <ComboBox Name="cmbTextColor" Width="80" SelectionChanged="cmbTextColor_SelectionChanged"
+                      Style="{StaticResource Cbox}"/>
+        </ToolBar>
+        <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" Background="DarkGray"/>
+    </DockPanel>
+</Window>
